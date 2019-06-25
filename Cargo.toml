@@ -1,0 +1,8 @@
+[package]
+name = "meibo"
+version = "0.1.0"
+authors = ["Kazuki Matsuo <matsuo2019@s.okayama-u.ac.jp>"]
+edition = "2018"
+
+[dependencies]
+colour = "0.3.0"
