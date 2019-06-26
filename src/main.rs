@@ -12,7 +12,7 @@ struct Date {
 }
 
 struct Profile{
-    id:       i32,
+    id:       u64,
     name:     String,
     birthday: Date,
     home:     String,
@@ -211,7 +211,7 @@ fn sort_by_comment(profile_data: &mut Vec<Profile>){
     profile_data.sort_by(|a, b|a.comment.cmp(&b.comment));
 }
 
-fn command_delete(profile_data: &mut Vec<Profile>, id: i32){
+fn command_delete(profile_data: &mut Vec<Profile>, id: u64){
     for (i, p) in profile_data.iter().enumerate(){
         if p.id == id {
             profile_data.remove(i);
@@ -267,7 +267,7 @@ fn exec_command(command: Vec<&str>, profile_data: &mut Vec<Profile>){
                     red_ln!("argument error: %S has 1 argument");
                 },
         "%D" =>  if command.len() == 2 {
-                    let id: Result<i32, std::num::ParseIntError> = command[1].parse();
+                    let id: Result<u64, std::num::ParseIntError> = command[1].parse();
                     match id{
                         Ok(id) => command_delete(profile_data, id),
                         Err(_) => red_ln!("value error: argument must be integer"),
@@ -282,7 +282,7 @@ fn exec_command(command: Vec<&str>, profile_data: &mut Vec<Profile>){
 }
 
 fn add_profile(profile_data: &mut Vec<Profile>, input_data: Vec<&str>){
-    let id_result: Result<i32, std::num::ParseIntError> = input_data[0].parse();
+    let id_result: Result<u64, std::num::ParseIntError> = input_data[0].parse();
 
     match id_result{
         Ok(_) => (),
@@ -292,7 +292,7 @@ fn add_profile(profile_data: &mut Vec<Profile>, input_data: Vec<&str>){
         },
     }
 
-    let id: i32 = id_result.unwrap();
+    let id: u64 = id_result.unwrap();
 
     for p in profile_data.iter(){
         if p.id == id{
