@@ -27,10 +27,10 @@ fn command_check(profile_data: &mut Vec<Profile>){
     println!("{} profile(s)", profile_data.len());
 }
 
-fn command_print(profile_data: &mut Vec<Profile>, n: isize){
-    let mut start: isize = 0;
-    let mut end: isize = 0;
-    let length = profile_data.len() as isize;
+fn command_print(profile_data: &mut Vec<Profile>, n: i32){
+    let mut start: i32 = 0;
+    let mut end: i32 = 0;
+    let length = profile_data.len() as i32;
 
     if length == 0{
         println!("No Data");
@@ -234,7 +234,7 @@ fn exec_command(command: Vec<&str>, profile_data: &mut Vec<Profile>){
                     red_ln!("argument error: %C has no argument");
                 },
         "%P" => if command.len() == 2 {
-                    let n: Result<isize, std::num::ParseIntError> = command[1].parse();
+                    let n: Result<i32, std::num::ParseIntError> = command[1].parse();
                     match n{
                         Ok(n) => command_print(profile_data, n),
                         Err(_) => red_ln!("value error: argument must be integer"),
