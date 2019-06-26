@@ -24,7 +24,7 @@ fn command_quit(){
 }
 
 fn command_check(profile_data: &mut Vec<Profile>){
-    println!("{}", profile_data.len());
+    println!("{} profile(s)", profile_data.len());
 }
 
 fn command_print(profile_data: &mut Vec<Profile>, n: isize){
